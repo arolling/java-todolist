@@ -8,7 +8,7 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-// import static org.fluentlenium.core.filter.FilterConstructor.*;
+import static org.fluentlenium.core.filter.FilterConstructor.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -39,25 +39,24 @@ public class AppTest extends FluentTest {
   }
 
   @Test
-  public void taskIsDisplayed() {
+  public void taskIsDisplayedTest() {
     goTo("http://localhost:4567/");
     fill("#description").with("Mow the lawn");
     submit(".btn");
-    click("a");
-    assertThat(pageSource().contains("Mow the zawn"));
+    click("a", withText("Go Back"));
+    assertThat(pageSource()).contains("Mow the lawn");
   }
 
   @Test
-  public void multipleTasksDisplayedTest() {
+  public void multipleTasksAreDisplayedTest() {
     goTo("http://localhost:4567/");
     fill("#description").with("Mow the lawn");
     submit(".btn");
-    click("a");
-    goTo("http://localhost:4567/");
+    click("a", withText("Go Back"));
     fill("#description").with("Buy groceries");
     submit(".btn");
-    click("a");
-    assertThat(pageSource().contains("Mow the zLawn"));
-    assertThat(pageSource().contains("Buy Groceries"));
+    click("a", withText("Go Back"));
+    assertThat(pageSource()).contains("Mow the lawn");
+    assertThat(pageSource()).contains("Buy groceries");
   }
 }
