@@ -5,10 +5,15 @@ public class Task {
   String mDescription;
   private boolean mCompleted;
   private LocalDateTime mCreatedAt;
+  private int mID;
+  private static ArrayList<Task> mAllTasks = new ArrayList<Task>();
 
   public Task(String description) {
     mDescription = description;
+    mCreatedAt = LocalDateTime.now();
     mCompleted = false;
+    mAllTasks.add(this);
+    mID = mAllTasks.size();
   }
 
   public String getDescription() {
@@ -20,7 +25,24 @@ public class Task {
   }
 
   public LocalDateTime getCreatedAt() {
-    mCreatedAt = LocalDateTime.now();
     return mCreatedAt;
   }
+
+  public static ArrayList<Task> all(){
+    return mAllTasks;
+  }
+
+  public int getId() {
+    return mID;
+  }
+
+  public static Task find(int id){
+    for (Task task : mAllTasks) {
+      if (task.getId() == id) {
+        return task;
+      }
+    }
+    return null;
+  }
+
 }
