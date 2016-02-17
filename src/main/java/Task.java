@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Task {
-  String mDescription;
+  private String mDescription;
   private boolean mCompleted;
   private LocalDateTime mCreatedAt;
   private int mID;
@@ -43,6 +43,10 @@ public class Task {
       }
     }
     return null;
+  }
+
+  public static void clear(){
+    mAllTasks.clear();
   }
 
 }

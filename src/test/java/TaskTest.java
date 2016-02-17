@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 
 public class TaskTest {
 
+  @Rule
+  public ClearRule clearRule = new ClearRule();
+
   @Test
   public void task_instantiatesCorrectly_true() {
     Task myTask = new Task("Mow the lawn");
@@ -49,16 +52,16 @@ public class TaskTest {
     Task secondTask = new Task("Buy groceries");
     assertEquals(Task.find(secondTask.getId()), secondTask);
   }
-  
-  // @Test
-  // public void find_returnsNullWhenNoTaskFound_null() {
-  //   assertTrue(Task.find(999) == null);
-  // }
-  //
-  // @Test
-  // public void clear_emptiesAllTasksFromArrayList() {
-  //   Task myTask = new Task("Mow the lawn");
-  //   Task.clear();
-  //   assertEquals(Task.all().size(), 0);
-  // }
+
+  @Test
+  public void find_returnsNullWhenNoTaskFound_null() {
+    assertTrue(Task.find(999) == null);
+  }
+
+  @Test
+  public void clear_emptiesAllTasksFromArrayList() {
+    Task myTask = new Task("Mow the lawn");
+    Task.clear();
+    assertEquals(Task.all().size(), 0);
+  }
 }
