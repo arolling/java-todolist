@@ -4,12 +4,13 @@ public class Category {
   private String mName;
   private int mId;
   private static ArrayList<Category> mAllCategories = new ArrayList<Category>();
-  private ArrayList<Task> mTasks = new ArrayList<Task>();
+  private ArrayList<Task> mTasks;
 
   public Category(String name){
     mName = name;
     mAllCategories.add(this);
     mId = mAllCategories.size();
+    mTasks = new ArrayList<Task>();
   }
 
   public String getName(){
